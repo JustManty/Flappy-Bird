@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://enka6wakk8k7"]
+
+[ext_resource type="Texture2D" uid="uid://chs6bx1y265qk" path="res://Assets/Sprites/bird.png" id="1_i8bdw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mcegt"]
+atlas = ExtResource("1_i8bdw")
+region = Rect2(17, 0, 17, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dnvpi"]
+atlas = ExtResource("1_i8bdw")
+region = Rect2(0, 0, 17, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vl8r2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mcegt")
+}],
+"loop": true,
+"name": &"flap",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dnvpi")
+}],
+"loop": true,
+"name": &"neutral",
+"speed": 5.0
+}]
+
+[node name="Bird" type="Node2D" unique_id=1523165165]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1149405082]
+sprite_frames = SubResource("SpriteFrames_vl8r2")
+animation = &"flap"

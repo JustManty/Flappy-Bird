@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://bbkwi8g1lv4g5"]
+
+[node name="Game" type="Node" unique_id=1822554075]
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=275128863]

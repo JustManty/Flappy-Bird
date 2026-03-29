@@ -1,0 +1,33 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Flappy Bird"
+config/description="Fan-made recreation of Flappy Bird in Godot for the 20 Game Challenge."
+config/version="1.0"
+run/main_scene="uid://bbkwi8g1lv4g5"
+config/features=PackedStringArray("4.6", "Forward Plus")
+config/icon="uid://bff6us8i2u5k5"
+
+[display]
+
+window/size/viewport_width=320
+window/size/viewport_height=480
+window/stretch/mode="viewport"
+window/stretch/scale_mode="integer"
+
+[physics]
+
+3d/physics_engine="Jolt Physics"
+
+[rendering]
+
+rendering_device/driver.windows="d3d12"
