@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://dlj7j2vkfwcu4"]
+
+[ext_resource type="Texture2D" uid="uid://dhfn8yf157wx6" path="res://Assets/Sprites/pipe.png" id="1_n21g0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hnit7"]
+size = Vector2(16, 119)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p1buf"]
+size = Vector2(16, 119)
+
+[node name="Pipe" type="RigidBody2D" unique_id=1125732704]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2113765834]
+position = Vector2(0, -80)
+rotation = -3.1415925
+texture = ExtResource("1_n21g0")
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1971031505]
+position = Vector2(0, -80.5)
+shape = SubResource("RectangleShape2D_hnit7")
+
+[node name="Bottom Pipe Sprite" type="Sprite2D" parent="." unique_id=1956797086]
+position = Vector2(0, 80)
+texture = ExtResource("1_n21g0")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1124787670]
+position = Vector2(0, 80.5)
+shape = SubResource("RectangleShape2D_p1buf")
