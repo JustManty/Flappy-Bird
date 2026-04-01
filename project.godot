@@ -19,8 +19,8 @@ config/icon="uid://bff6us8i2u5k5"
 
 [display]
 
-window/size/viewport_width=160
-window/size/viewport_height=240
+window/size/viewport_width=360
+window/size/viewport_height=480
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
 

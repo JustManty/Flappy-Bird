@@ -1,13 +1,15 @@
+class_name Bird
 extends CharacterBody2D
 
-var _gravity : float = 5
-var _max_velocity : float = 150
+var _gravity : float = 8
+var _max_velocity : float = 300
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 func _physics_process(delta: float) -> void:
 	velocity.y = clampf(velocity.y + _gravity, _max_velocity * -1, _max_velocity)
 	if Input.is_action_just_pressed("flap"):
 		velocity.y = _max_velocity * -1
+	velocity.x = 0 # Force no horizontal movement
 	move_and_collide(velocity * delta)
 	_update_animation()
 
