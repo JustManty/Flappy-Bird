@@ -16,3 +16,5 @@ func _update_animation() -> void:
 		animated_sprite_2d.animation = "flap"
 	else:
 		animated_sprite_2d.animation = "neutral"
+	
+	animated_sprite_2d.rotation_degrees = clampf(velocity.y / 2, -40, 40)
