@@ -1,6 +1,8 @@
 class_name Bird
 extends CharacterBody2D
 
+signal game_over
+
 var _gravity : float = 10
 var _max_velocity : float = 275
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
@@ -15,6 +17,7 @@ func _physics_process(delta: float) -> void:
 	if collision:
 		var collider = collision.get_collider()
 		if collider is Pipe or collider is Ground:
+			game_over.emit()
 			get_tree().paused = true
 
 func _update_animation() -> void:

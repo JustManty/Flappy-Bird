@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dlj7j2vkfwcu4" path="res://Scenes/pipe.tscn" id="5_wowpa"]
 [ext_resource type="FontFile" uid="uid://c8kobtbgerdvr" path="res://Assets/Fonts/Jersey10-Regular.ttf" id="6_i6g32"]
 [ext_resource type="Script" uid="uid://qduqiwuximfh" path="res://Scripts/title_label.gd" id="7_1l0tm"]
+[ext_resource type="Script" uid="uid://vka5ol0ksiub" path="res://Scenes/score_label.gd" id="8_v158k"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ebmjs"]
 
@@ -21,6 +22,16 @@ outline_color = Color(0.25565878, 0.25565878, 0.25565878, 1)
 shadow_size = 7
 shadow_color = Color(0.25490198, 0.25490198, 0.25490198, 1)
 shadow_offset = Vector2(0, 3)
+
+[sub_resource type="LabelSettings" id="LabelSettings_v158k"]
+line_spacing = 0.0
+font = ExtResource("6_i6g32")
+font_size = 24
+outline_size = 4
+outline_color = Color(0.25565878, 0.25565878, 0.25565878, 1)
+shadow_size = 0
+shadow_color = Color(0.25490198, 0.25490198, 0.25490198, 1)
+shadow_offset = Vector2(0, 0)
 
 [node name="Game" type="Node" unique_id=1822554075]
 script = ExtResource("1_3dryh")
@@ -45,11 +56,9 @@ scale = Vector2(2, 2)
 
 [node name="Pipe" parent="Gameplay Loop" unique_id=1125732704 instance=ExtResource("5_wowpa")]
 position = Vector2(338, 183)
-scale = Vector2(2.5, 2.5)
 
 [node name="Pipe2" parent="Gameplay Loop" unique_id=1789237753 instance=ExtResource("5_wowpa")]
 position = Vector2(586, 278)
-scale = Vector2(2.5, 2.5)
 
 [node name="Ground" type="StaticBody2D" parent="Gameplay Loop" unique_id=1617304619]
 position = Vector2(248, 451)
@@ -66,20 +75,72 @@ texture = ExtResource("3_3dryh")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=275128863]
 
-[node name="CenterContainer" type="CenterContainer" parent="UI" unique_id=2087865838]
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 70.0
+[node name="TitleLabel" type="Label" parent="UI" unique_id=601322459]
+texture_filter = 4
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -115.0
+offset_top = -160.0
+offset_right = 115.0
+offset_bottom = -90.0
 grow_horizontal = 2
+grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="RichTextLabel" type="Label" parent="UI/CenterContainer" unique_id=1462174032]
-layout_mode = 2
 size_flags_horizontal = 4
 text = "FlappyBird"
 label_settings = SubResource("LabelSettings_1l0tm")
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("7_1l0tm")
+metadata/_custom_type_script = "uid://qduqiwuximfh"
+
+[node name="StartText" type="Label" parent="UI" unique_id=1748080004]
+texture_filter = 4
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -115.0
+offset_top = 73.0
+offset_right = 115.0
+offset_bottom = 143.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
+text = "Press SPACE to play!"
+label_settings = SubResource("LabelSettings_v158k")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("7_1l0tm")
+metadata/_custom_type_script = "uid://qduqiwuximfh"
+
+[node name="ScoreLabel" type="Label" parent="UI" unique_id=1264231745]
+visible = false
+texture_filter = 4
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -115.0
+offset_top = -200.0
+offset_right = 115.0
+offset_bottom = -130.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
+text = "0"
+label_settings = SubResource("LabelSettings_1l0tm")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("8_v158k")
+
+[connection signal="reset" from="." to="UI/ScoreLabel" method="reset"]
+[connection signal="score" from="Gameplay Loop/Pipe" to="UI/ScoreLabel" method="score"]
+[connection signal="score" from="Gameplay Loop/Pipe2" to="UI/ScoreLabel" method="score"]

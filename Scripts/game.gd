@@ -1,7 +1,7 @@
 class_name GameController
 extends Node
 
-signal update_scroll_speed(float)
+signal reset()
 
 func _ready() -> void:
 	$"Gameplay Loop".process_mode = Node.PROCESS_MODE_PAUSABLE
@@ -15,3 +15,6 @@ func _process(delta: float) -> void:
 
 func _start_game() -> void:
 	get_tree().paused = false
+	$UI/TitleLabel.visible = false
+	$UI/ScoreLabel.visible = true
+	reset.emit()
