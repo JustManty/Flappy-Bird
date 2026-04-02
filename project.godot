@@ -13,6 +13,7 @@ config_version=5
 config/name="Flappy Bird"
 config/description="Fan-made recreation of Flappy Bird in Godot for the 20 Game Challenge."
 config/version="1.0"
+config/tags=PackedStringArray("20_game_challenge")
 run/main_scene="uid://bbkwi8g1lv4g5"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="uid://bff6us8i2u5k5"

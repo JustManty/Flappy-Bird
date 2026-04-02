@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://enka6wakk8k7" path="res://Scenes/bird.tscn" id="1_ebmjs"]
 [ext_resource type="Script" uid="uid://36nk826p1bug" path="res://Scripts/ground.gd" id="2_wrm1d"]
 [ext_resource type="Texture2D" uid="uid://dq0ndos0lk83l" path="res://Assets/Sprites/Ground.png" id="3_3dryh"]
+[ext_resource type="PackedScene" uid="uid://dlj7j2vkfwcu4" path="res://Scenes/pipe.tscn" id="5_wowpa"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ebmjs"]
 
@@ -22,7 +23,15 @@ color = Color(5.583167e-06, 0.6430293, 0.8277485, 1)
 
 [node name="Bird" parent="." unique_id=1523165165 instance=ExtResource("1_ebmjs")]
 texture_filter = 1
-position = Vector2(80, 120)
+position = Vector2(114, 178)
+scale = Vector2(2, 2)
+
+[node name="Pipe" parent="." unique_id=1125732704 instance=ExtResource("5_wowpa")]
+position = Vector2(332, 171)
+scale = Vector2(2, 2)
+
+[node name="Pipe2" parent="." unique_id=1789237753 instance=ExtResource("5_wowpa")]
+position = Vector2(586, 278)
 scale = Vector2(2, 2)
 
 [node name="Ground" type="StaticBody2D" parent="." unique_id=1617304619]
@@ -39,5 +48,3 @@ scale = Vector2(2, 2)
 texture = ExtResource("3_3dryh")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=275128863]
-
-[connection signal="update_scroll_speed" from="." to="Ground" method="update_scroll_speed"]

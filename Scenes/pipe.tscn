@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://dlj7j2vkfwcu4"]
 
+[ext_resource type="Script" uid="uid://2vurvbkmikt7" path="res://Scripts/pipe.gd" id="1_hnit7"]
 [ext_resource type="Texture2D" uid="uid://dhfn8yf157wx6" path="res://Assets/Sprites/pipe.png" id="1_n21g0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hnit7"]
@@ -8,9 +9,12 @@ size = Vector2(16, 119)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p1buf"]
 size = Vector2(16, 119)
 
-[node name="Pipe" type="RigidBody2D" unique_id=1125732704]
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_p1buf"]
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2113765834]
+[node name="Pipe" type="StaticBody2D" unique_id=1789237753]
+script = ExtResource("1_hnit7")
+
+[node name="Top Pipe Sprite" type="Sprite2D" parent="." unique_id=2113765834]
 position = Vector2(0, -80)
 rotation = -3.1415925
 texture = ExtResource("1_n21g0")
@@ -27,3 +31,13 @@ texture = ExtResource("1_n21g0")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1124787670]
 position = Vector2(0, 80.5)
 shape = SubResource("RectangleShape2D_p1buf")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=77063654]
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1120048817]
+rotation = -1.5707964
+shape = SubResource("WorldBoundaryShape2D_p1buf")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
