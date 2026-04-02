@@ -14,4 +14,4 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 func respawn() -> void:
 	position.x = get_viewport().get_visible_rect().size.x + 150
-	position.y = randi_range(171, 280)
+	position.y = randi_range(101, 350)
