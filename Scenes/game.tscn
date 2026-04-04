@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://dq0ndos0lk83l" path="res://Assets/Sprites/Ground.png" id="3_3dryh"]
 [ext_resource type="PackedScene" uid="uid://dlj7j2vkfwcu4" path="res://Scenes/pipe.tscn" id="5_wowpa"]
 [ext_resource type="FontFile" uid="uid://c8kobtbgerdvr" path="res://Assets/Fonts/Jersey10-Regular.ttf" id="6_i6g32"]
-[ext_resource type="Script" uid="uid://qduqiwuximfh" path="res://Scripts/title_label.gd" id="7_1l0tm"]
-[ext_resource type="Script" uid="uid://vka5ol0ksiub" path="res://Scenes/score_label.gd" id="8_v158k"]
+[ext_resource type="Script" uid="uid://dfywmn8k36uuk" path="res://Scripts/scale_modulator_component.gd" id="8_h4fw4"]
+[ext_resource type="Script" uid="uid://vka5ol0ksiub" path="res://Scripts/score_label.gd" id="8_v158k"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ebmjs"]
 
@@ -32,6 +32,36 @@ outline_color = Color(0.25565878, 0.25565878, 0.25565878, 1)
 shadow_size = 0
 shadow_color = Color(0.25490198, 0.25490198, 0.25490198, 1)
 shadow_offset = Vector2(0, 0)
+
+[sub_resource type="GDScript" id="GDScript_v158k"]
+script/source = "extends Label
+
+var growing : bool = true
+var rotating_left : bool = false
+const MAX_SCALE_CHANGE = 0.10
+const MAX_ROTATION_ANGLE = 10
+
+func _process(delta: float) -> void:
+	if growing:
+		scale.x += 0.04 * delta
+		scale.y = scale.x
+		if scale.x > (1 + MAX_SCALE_CHANGE):
+			growing = false
+	else:
+		scale.x -= 0.04 * delta
+		scale.y = scale.x
+		if scale.x < (1 - MAX_SCALE_CHANGE):
+			growing = true
+	
+	if rotating_left:
+		rotation_degrees -= 6 * delta
+		if rotation_degrees < (0 - MAX_ROTATION_ANGLE):
+			rotating_left = false
+	else:
+		rotation_degrees += 6 * delta
+		if rotation_degrees > (0 + MAX_ROTATION_ANGLE):
+			rotating_left = true
+"
 
 [node name="Game" type="Node" unique_id=1822554075]
 script = ExtResource("1_3dryh")
@@ -94,8 +124,9 @@ text = "FlappyBird"
 label_settings = SubResource("LabelSettings_1l0tm")
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("7_1l0tm")
-metadata/_custom_type_script = "uid://qduqiwuximfh"
+
+[node name="ScaleModulatorComponent" type="Node" parent="UI/TitleLabel" unique_id=635430017]
+script = ExtResource("8_h4fw4")
 
 [node name="StartText" type="Label" parent="UI" unique_id=1748080004]
 texture_filter = 4
@@ -116,7 +147,7 @@ text = "Press SPACE to play!"
 label_settings = SubResource("LabelSettings_v158k")
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("7_1l0tm")
+script = SubResource("GDScript_v158k")
 metadata/_custom_type_script = "uid://qduqiwuximfh"
 
 [node name="ScoreLabel" type="Label" parent="UI" unique_id=1264231745]
